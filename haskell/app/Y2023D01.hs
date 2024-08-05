@@ -12,15 +12,17 @@ filterString = filter (\c -> isDigit c)
 replaceAlphaNumbers :: String -> String
 replaceAlphaNumbers [] = []
 replaceAlphaNumbers str@(x:xs)
-    | isPrefixOf "one"   str   = ('1' : (replaceAlphaNumbers $ drop 3 str))
-    | isPrefixOf "two"   str   = ('2' : (replaceAlphaNumbers $ drop 3 str))
-    | isPrefixOf "three" str   = ('3' : (replaceAlphaNumbers $ drop 5 str))
-    | isPrefixOf "four"  str   = ('4' : (replaceAlphaNumbers $ drop 4 str))
-    | isPrefixOf "five"  str   = ('5' : (replaceAlphaNumbers $ drop 4 str))
-    | isPrefixOf "six"   str   = ('6' : (replaceAlphaNumbers $ drop 3 str))
-    | isPrefixOf "seven" str   = ('7' : (replaceAlphaNumbers $ drop 5 str))
-    | isPrefixOf "eight" str   = ('8' : (replaceAlphaNumbers $ drop 5 str))
-    | isPrefixOf "nine"  str   = ('9' : (replaceAlphaNumbers $ drop 4 str))
+    -- drop one letter fewer than the length of the matching string to account
+    -- for overlaps like "oneeight", "threeight" etc.
+    | isPrefixOf "one"   str   = ('1' : (replaceAlphaNumbers $ drop 2 str))
+    | isPrefixOf "two"   str   = ('2' : (replaceAlphaNumbers $ drop 2 str))
+    | isPrefixOf "three" str   = ('3' : (replaceAlphaNumbers $ drop 4 str))
+    | isPrefixOf "four"  str   = ('4' : (replaceAlphaNumbers $ drop 3 str))
+    | isPrefixOf "five"  str   = ('5' : (replaceAlphaNumbers $ drop 3 str))
+    | isPrefixOf "six"   str   = ('6' : (replaceAlphaNumbers $ drop 2 str))
+    | isPrefixOf "seven" str   = ('7' : (replaceAlphaNumbers $ drop 4 str))
+    | isPrefixOf "eight" str   = ('8' : (replaceAlphaNumbers $ drop 4 str))
+    | isPrefixOf "nine"  str   = ('9' : (replaceAlphaNumbers $ drop 3 str))
     | otherwise                = (x : replaceAlphaNumbers xs)
 
 decodeLine :: String -> Int
