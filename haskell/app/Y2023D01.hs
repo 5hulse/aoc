@@ -37,4 +37,4 @@ year2023day01 = do
         part1 = sum [decodeLine str | str <- list]
         part2 = sum [decodeLine $ replaceAlphaNumbers str | str <- list]
 
-    putStrLn $ printf "Part 1 Result: %d\nPart 2 Result: %d" part1 part2
+    putStrLn $ Utils.resultString 2023 1 part1 part2
