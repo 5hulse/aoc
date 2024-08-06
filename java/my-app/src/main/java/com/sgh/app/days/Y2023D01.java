@@ -7,6 +7,7 @@ import com.sgh.app.Utils;
 import java.lang.Character;
 
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -15,6 +16,15 @@ import java.util.List;
 public class Y2023D01 {
     static final int year = 2023;
     static final int day = 1;
+    static final List<String> lines;
+
+    static {
+        List<String> lns = null;
+        try{
+            lns = Utils.getInputLines(2023, 1);
+        } catch (FileNotFoundException e) {}
+        lines = lns;
+    }
 
     static final HashSet<Character> charSet = new HashSet<>(
         Arrays.asList('1', '2', '3', '4', '5', '6', '7', '8', '9')
@@ -35,39 +45,24 @@ public class Y2023D01 {
         return map;
     }
 
-    public static void run() throws FileNotFoundException {
-        try {
-            int part1 = partOne();
-            int part2 = partTwo();
-            System.out.println(Utils.resultString(year, day, part1, part2));
-        } catch (FileNotFoundException e) {
-            throw e;
-        }
+    public static void run() {
+        int part1 = partOne();
+        int part2 = partTwo();
+        System.out.println(Utils.resultString(year, day, part1, part2));
     }
 
-    public static int partOne() throws FileNotFoundException {
-        try {
-            List<String> lines = Utils.getInputLines(2023, 1);
-            int result = processList(lines);
-            return result;
-        }
-        catch (FileNotFoundException e) {
-            throw e;
-        }
+    public static int partOne() {
+        int result = processList(lines);
+        return result;
     }
 
-    public static int partTwo() throws FileNotFoundException {
-        try {
-            List<String> lines = Utils.getInputLines(2023, 1);
-            for (int i = 0; i < lines.size(); i++) {
-                lines.set(i, alphabetToNumerals(lines.get(i)));
-            }
-            int result = processList(lines);
-            return result;
+    public static int partTwo() {
+        List<String> linesCopy = new ArrayList<>(lines);
+        for (int i = 0; i < linesCopy.size(); i++) {
+            linesCopy.set(i, alphabetToNumerals(linesCopy.get(i)));
         }
-        catch (FileNotFoundException e) {
-            throw e;
-        }
+        int result = processList(linesCopy);
+        return result;
     }
 
     static int processList(List<String> list) {
