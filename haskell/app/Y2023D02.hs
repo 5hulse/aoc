@@ -4,7 +4,6 @@ module Y2023D02 ( year2023day02 ) where
 
 import qualified Utils
 
-import Data.List (foldl')
 import Text.Regex.TDFA
 
 year :: Int
@@ -48,9 +47,5 @@ year2023day02 = do
                 isBlue _          = False
                 isGreen (Green _) = True
                 isGreen _         = False
--- getMax(r, g, b) (Red n)   = if n > r then (n, g, b) else (r, g, b)
---                   getMax(r, g, b) (Green n) = if n > g then (r, n, b) else (r, g, b)
---                   getMax(r, g, b) (Blue n)  = if n > b then (r, g, n) else (r, g, b)
---                   prod (r, g, b) = r * g * b
 
     putStrLn $ Utils.resultString year day part1 part2
