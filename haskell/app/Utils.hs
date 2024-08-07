@@ -17,16 +17,16 @@ inputTestFileTmpl :: String
 inputTestFileTmpl = "../inputs/Y%02dD%02d-test.txt"
 
 resultStringTmpl :: String
-resultStringTmpl = "year %d, day %02d, part 1: %s\nyear %d, day %02d, part 2: %s"
+resultStringTmpl = "year %d, day %02d:\nPart 1: %s\nPart 2: %s\n"
 
-resultString :: (Show a) => Int -> Int -> a -> a -> String
-resultString year day part1 part2 = printf resultStringTmpl year day (show part1) year day (show part2)
+resultString :: (Show a, Show b) => Int -> Int -> a -> b -> String
+resultString year day part1 part2 = printf resultStringTmpl year day (show part1) (show part2)
 
 getInputFile :: Int -> Int -> String
-getInputFile year day = printf inputFileTmpl year day
+getInputFile = printf inputFileTmpl
 
 getInputTestFile :: Int -> Int -> String
-getInputTestFile year day = printf inputTestFileTmpl year day
+getInputTestFile = printf inputTestFileTmpl
 
 loadInput :: String -> IO String
 loadInput fileName =
